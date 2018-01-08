@@ -13,6 +13,5 @@ The server is a NodeJS application that uses express and mongoDB.  To get setup:
 SECRET_KEY=longRandomStringOfCharacters
 ```
 __DO NOT CHECK IN THIS FILE__
-
-* npm start
-
+* start mongod
+* npm run dev
