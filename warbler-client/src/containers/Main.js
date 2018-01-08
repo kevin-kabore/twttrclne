@@ -6,6 +6,7 @@ import Signup from '../components/Signup';
 import Signin from '../components/Signin';
 import Feed from '../components/Feed';
 import MessageForm from '../components/MessageForm';
+import Landing from '../components/Landing';
 
 class Main extends Component {
   constructor(props) {
@@ -14,7 +15,9 @@ class Main extends Component {
   }
   componentDidMount() {
     const { loadMessages } = this.props;
-    loadMessages();
+    if (this.props.currentUser) {
+      loadMessages();
+    }
   }
   handleNewMessage(text) {
     const { newMessage, history } = this.props;
@@ -42,7 +45,10 @@ class Main extends Component {
             render={props => (
               <Signup
                 onSignup={authInfo =>
-                  handleSignup(authInfo).then(() => history.push('/'))}
+                  handleSignup(authInfo).then(() => {
+                    this.props.loadMessages();
+                    return history.push('/');
+                  })}
                 errorMessage={authErrorMessage}
               />
             )}
@@ -53,7 +59,10 @@ class Main extends Component {
             render={props => (
               <Signin
                 onSignin={authInfo =>
-                  handleSignin(authInfo).then(() => history.push('/'))}
+                  handleSignin(authInfo).then(() => {
+                    this.props.loadMessages();
+                    return history.push('/');
+                  })}
                 errorMessage={authErrorMessage}
               />
             )}
@@ -62,9 +71,16 @@ class Main extends Component {
           <Route
             exact
             path="/"
-            render={props => (
-              <Feed {...props} currentUser={currentUser} messages={messages} />
-            )}
+            render={props =>
+              currentUser ? (
+                <Feed
+                  {...props}
+                  currentUser={currentUser}
+                  messages={messages}
+                />
+              ) : (
+                <Landing />
+              )}
           />
           <Route
             exact
