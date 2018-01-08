@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
+
 const devURL = 'mongodb://localhost/warbler';
-const prodURL =
-  'mongodb://kevinkabore:password@ds245347.mlab.com:45347/warbler-prod';
-mongoose.connect(process.env.NODE_ENV === 'production' ? prodURL : devURL, {
+const url =
+  process.env.NODE_ENV === 'production' ? process.env.MONGO_URI : devURL;
+
+mongoose.connect(url, {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   useMongoClient: true

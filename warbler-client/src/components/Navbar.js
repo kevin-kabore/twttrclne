@@ -8,7 +8,7 @@ const Navbar = props => {
       <div className="container-fluid">
         <div className="navbar-header">
           <div className="navbar-brand">
-            {currentUser ? <Link to="/">Warbler</Link> : 'Warbler'}
+            {currentUser ? <Link to="/">Twttr Clne</Link> : 'Twttr Clne'}
           </div>
         </div>
         <ul className="nav navbar-nav navbar-right">
