@@ -36,7 +36,25 @@ app.get('/api/messages', function(req, res, next) {
     });
 });
 
-const PORT = 3001;
+////////////////////////////////////
+// Client Routing in production ////
+////////////////////////////////////
+if (process.env.NODE_ENV === 'production') {
+  // Express will serve up production assets
+  // like our main.js or main.css file in client build
+  app.use(express.static('warbler-client/build'));
+
+  // Express will serve up the index.html
+  // if it does not recognize the route
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, 'warbler-client', 'build', 'index.html')
+    );
+  });
+}
+
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, function() {
   console.log(`Server is listening on port ${PORT}...`);
