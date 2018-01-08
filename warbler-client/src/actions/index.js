@@ -38,9 +38,10 @@ export const signin = authInfo => (dispatch, getState) =>
   );
 
 export const signup = authInfo => (dispatch, getState) =>
-  authRequest(authInfo, '/api/auth/signup').then(currentUser =>
-    dispatch(authenticateUser(currentUser))
-  );
+  authRequest(authInfo, '/api/auth/signup').then(currentUser => {
+    console.log('SIGNING UP');
+    return dispatch(authenticateUser(currentUser));
+  });
 
 export const addMessage = message => ({
   type: 'ADD_MESSAGE',
