@@ -23,7 +23,7 @@ class Signup extends Component {
   render() {
     return (
       <div className="signup-component">
-        <h1>Join Warbler today.</h1>
+        <h1>Join the community today.</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Email
