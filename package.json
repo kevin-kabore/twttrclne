@@ -23,7 +23,7 @@
     "express": "^4.14.1",
     "faker": "^4.1.0",
     "jsonwebtoken": "^7.3.0",
-    "mongoose": "^4.8.4"
+    "mongoose": "^4.13.21"
   },
   "devDependencies": {
     "locus": "^2.0.1",
